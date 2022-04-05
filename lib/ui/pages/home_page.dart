@@ -64,14 +64,11 @@ class HomePage extends StatelessWidget {
           drawerScrimColor: Colors.transparent,
           body: Obx(() => controller.isLoading.value
               ? const Center(child: CircularProgressIndicator())
-              : CupertinoScrollbar(
+              : Scrollbar(
+                  key: UniqueKey(),
                   child: ListView.builder(
-                      // separatorBuilder: (BuildContext context, int index) {
-                      //   return const Divider();
-                      // },
                       itemBuilder: (BuildContext context, int position) {
                         Application app = controller.applicationList[position];
-
                         return AppCard(app: app);
                       },
                       itemCount: controller.applicationList.length),

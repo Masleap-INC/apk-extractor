@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/constants.dart';
+import '../../utils/extensions.dart';
 
 class AppCard extends StatelessWidget {
   final Application app;
@@ -14,7 +15,9 @@ class AppCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          showMenuDialogue(context, app);
+        },
         borderRadius: BorderRadius.circular(5.0),
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -79,7 +82,9 @@ class AppCard extends StatelessWidget {
                                   child: Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        showMenuDialogue(context, app);
+                                      },
                                       borderRadius: BorderRadius.circular(5.0),
                                       child: Container(
                                         padding: const EdgeInsets.symmetric(

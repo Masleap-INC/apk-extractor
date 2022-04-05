@@ -16,11 +16,10 @@ class PrivacyPolicy extends StatelessWidget{
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          iconTheme: const IconThemeData(color: Colors.redAccent, size: 22,),
-          title: const Text(
+          iconTheme: const IconThemeData(size: 22),
+          title: Text(
             "Privacy Policy",
-            style: TextStyle(
-                color: Colors.blueGrey, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headline3,
           ),
           titleSpacing: 0,
           leading: IconButton(

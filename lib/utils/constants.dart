@@ -12,7 +12,7 @@ const String contactMail = 'mailto:imamagun94@gmail.com';
 
 const String appLink = 'https://play.google.com/store/apps/details?id=com.masleap.apk_extractor';
 const String storeLink = 'https://play.google.com/store/apps/developer?id=NewAgeDevs';
-const String privacyPolicyUrl = 'https://qr-code-scanner-privacy.blogspot.com/2022/02/qr-code-scanner-privacy-policy-in-this.html';
+const String privacyPolicyUrl = 'https://apk-extractor.blogspot.com/2022/04/privacy-policy-apk-extractor.html';
 
 // Test ads unit id Google
 // const String idBanner = "ca-app-pub-3940256099942544/6300978111";

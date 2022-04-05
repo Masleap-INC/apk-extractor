@@ -1,9 +1,13 @@
 import 'dart:math';
 
+import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'constants.dart';
 
@@ -185,8 +189,7 @@ void showRatingDialogue(BuildContext context) async {
   );
 }
 
-
-Future<bool> onDeletePressed(BuildContext context) async {
+void showMenuDialogue(BuildContext context, Application app) async {
   return showDialog(
     barrierColor: Colors.black12,
     context: context,
@@ -198,7 +201,7 @@ Future<bool> onDeletePressed(BuildContext context) async {
           Container(
             clipBehavior: Clip.none,
             margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
             decoration: BoxDecoration(
                 color: Theme.of(context).backgroundColor,
                 borderRadius: BorderRadius.circular(10.0),
@@ -212,7 +215,7 @@ Future<bool> onDeletePressed(BuildContext context) async {
             child: Column(
               children: [
                 const Text(
-                  'Remove all history',
+                  appName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -221,56 +224,69 @@ Future<bool> onDeletePressed(BuildContext context) async {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 8,),
                 const Divider(thickness: 1,),
-                const SizedBox(height: 8,),
-                const Text(
-                  "Are you sure you want to permanently remove all history?",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.none,
-                    fontSize: 14,
-                    color: Colors.black54,
+
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      Clipboard.setData(ClipboardData(text: app.packageName));
+                      Fluttertoast.showToast(
+                          msg: "Copied",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
+                    },
+                    child: Text(
+                      'Copy Package Name',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: TextButton(
-                            onPressed: ()=>Get.back(result: true),
-                            style: TextButton.styleFrom(
-                              primary: Colors.redAccent,
-                            ),
-                            child: const Text(
-                              'Delete',
-                              //style: TextStyle(fontSize: 30),
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          child: TextButton(
-                            onPressed: ()=>Get.back(result: false),
-                            style: TextButton.styleFrom(
-                              primary: Colors.black,
-                            ),
-                            child: const Text(
-                              'Cancel',
-                              //style: TextStyle(fontSize: 30),
-                            ),
-                          )
-                      ),
-                    ],
+                const Divider(height: 0.25,),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      String filePath = app.apkFilePath;
+                      RenderBox box = context.findRenderObject()! as RenderBox;
+                      Share.shareFiles([filePath],
+                          subject: '${app.appName}_${app.versionName}.apk',
+                          sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
+                    },
+                    child: Text(
+                      'Share App',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
-                )
+                ),
+                const Divider(height: 0.25,),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      app.uninstallApp();
+                    },
+                    child: Text(
+                      'Uninstall App',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        color: Colors.redAccent
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ]),
       );
     },
-  ).then((value) => value ?? false);
-
+  );
 }
