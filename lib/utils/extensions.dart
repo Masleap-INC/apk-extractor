@@ -232,15 +232,7 @@ void showMenuDialogue(BuildContext context, Application app) async {
                     onPressed: () {
                       Get.back();
                       Clipboard.setData(ClipboardData(text: app.packageName));
-                      Fluttertoast.showToast(
-                          msg: "Copied",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.black,
-                          textColor: Colors.white,
-                          fontSize: 16.0
-                      );
+                      showMessage('Package name copied');
                     },
                     child: Text(
                       'Copy Package Name',
@@ -288,5 +280,18 @@ void showMenuDialogue(BuildContext context, Application app) async {
         ]),
       );
     },
+  );
+}
+
+
+void showMessage(String text) {
+  Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 16.0
   );
 }

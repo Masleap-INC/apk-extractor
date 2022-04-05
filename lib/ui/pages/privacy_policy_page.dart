@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -11,31 +12,34 @@ class PrivacyPolicy extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          iconTheme: const IconThemeData(size: 22),
-          title: Text(
-            "Privacy Policy",
-            style: Theme.of(context).textTheme.headline3,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: mainPageSystemOverlay(Theme.of(context).brightness),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            iconTheme: const IconThemeData(size: 22),
+            title: Text(
+              "Privacy Policy",
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            titleSpacing: 0,
+            leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(FontAwesomeIcons.arrowLeft)),
           ),
-          titleSpacing: 0,
-          leading: IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: WebView(
-              javascriptMode: JavascriptMode.unrestricted,
-                initialUrl: privacyPolicyUrl,
-              onWebViewCreated: (WebViewController c) {},
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: WebView(
+                javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: privacyPolicyUrl,
+                onWebViewCreated: (WebViewController c) {},
+              ),
             ),
           ),
         ),

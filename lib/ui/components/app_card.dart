@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:device_apps/device_apps.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../utils/constants.dart';
 import '../../utils/extensions.dart';
@@ -154,7 +159,11 @@ class AppCard extends StatelessWidget {
                         app.openSettingsScreen();
                       }),
                   actionButton(
-                      context: context, title: 'Extract', onPressed: () {}),
+                      context: context,
+                      title: 'Extract',
+                      onPressed: () {
+                        checkStoragePermission(app);
+                      }),
                 ],
               )
             ],
@@ -191,5 +200,44 @@ class AppCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void checkStoragePermission(Application application) async {
+    await Permission.storage.request();
+
+    PermissionStatus status = await Permission.storage.status;
+
+    if (status == PermissionStatus.granted) {
+      // Extraction code
+      Directory? directory;
+      try {
+        directory = Directory('/storage/emulated/0/Download/ApkExtractor');
+        if (!await directory.exists()) {
+          directory.createSync(recursive: true);
+        }
+      } catch (err) {
+        if (kDebugMode) {
+          print("Cannot get download folder path");
+        }
+      }
+
+      String? path =
+          directory?.path; // (await getExternalStorageDirectory())!.path;
+      String fileName = '${application.appName}_${application.versionName}.apk';
+      File file = File(app.apkFilePath);
+
+      await file.exists();
+
+      try{
+        file.copy('$path/$fileName').then((value) {
+          showMessage('File saved into the directory: $value');
+        });
+      }catch (err) {
+        showMessage('Error: $err');
+      }
+    } else if (status == PermissionStatus.denied ||
+        status == PermissionStatus.restricted) {
+      showMessage('Please grant storage permission');
+    }
   }
 }
