@@ -7,7 +7,6 @@ import 'package:sizer/sizer.dart';
 import 'services/get_storage_service.dart';
 import 'services/theme_service.dart';
 import 'utils/themes.dart';
-import 'utils/themes_mode.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemesMode().init(context);
     return Sizer(
         builder: (context, orientation, deviceType) {
           return GetMaterialApp(

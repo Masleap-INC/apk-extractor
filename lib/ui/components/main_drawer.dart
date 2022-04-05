@@ -19,6 +19,7 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Drawer(
+      backgroundColor: Theme.of(context).backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
