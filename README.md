@@ -5,10 +5,10 @@ An android application to view application's package name and extract applicatio
 
 ## Screenshots
 <p align="center">
-  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img1.jpg" width="24%"> &nbsp;
-  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img2.jpg" width="24%"> &nbsp;
-  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img3.jpg" width="24%"> &nbsp;
-  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img4.jpg" width="24%"> &nbsp;
+  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img1.jpg" width="23%"> &nbsp;
+  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img2.jpg" width="23%"> &nbsp;
+  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img3.jpg" width="23%"> &nbsp;
+  <img alt="image" src="https://github.com/Masleap-INC/apk-extractor/blob/main/screenshots/img4.jpg" width="23%"> &nbsp;
 </p>
 
 
