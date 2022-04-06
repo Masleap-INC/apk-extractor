@@ -32,23 +32,6 @@ Lot more!!
 * File Manager
 
 
-<div align="center">
-
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](#)
-[![GitHub Forks](https://img.shields.io/github/forks/saadhaxxan/Car_Game_Python_Pygame.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/Masleap-INC/apk-extractor/fork)
-[![GitHub Issues](https://img.shields.io/github/issues/saadhaxxan/Car_Game_Python_Pygame.svg?style=flat&label=Issues&maxAge=2592000)](https://github.com/Masleap-INC/apk-extractor/issues)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat&label=Contributions&colorA=red&colorB=black	)](#)
-
-</div>
-
-
-
-
-## 📁 Download Now
-
-Get it from <a href="https://drive.google.com/file/d/1g50P9glhaz1Qa1GPliWYZNoD4IoUaMjX/view?usp=sharing">Google drive</a>
-
-
 ## 💻 Installation steps
 
 
